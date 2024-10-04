@@ -15,6 +15,43 @@ new class extends Component {
         $this->authorize('delete', $note);
         $note->delete();
     }
+
+    public function placeholder()
+    {
+        return <<<'HTML'
+        <div class="grid grid-cols-2 gap-4 mt-12">
+            <div role="status" class="max-w-sm p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700">
+                <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status" class="max-w-sm p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700">
+                <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status" class="max-w-sm p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700">
+                <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status" class="max-w-sm p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700">
+                <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+
+        HTML;
+    }
 }; ?>
 
 <div>
@@ -37,7 +74,7 @@ new class extends Component {
                         <div class="flex justify-between">
                             <div>
                                 <a href="{{ route('notes.edit', $note) }}" wire:navigate
-                                    class="text-xl font-bold hover:underline hover:text-blue-500">{{ $note->title }}</a>
+                                    class="text-xl font-bold hover:underline hover:text-blue-500">{{ Str::limit($note->title, 20) }}</a>
                                 <p class="mt-2 text-xs">{{ Str::limit($note->body, 20) }}</p>
                             </div>
                             <div class="text-xs text-gray-500">
